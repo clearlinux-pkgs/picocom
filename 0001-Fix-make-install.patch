@@ -1,0 +1,30 @@
+From 151c7c722597e3cdd2a4b5d811af36e410e820c8 Mon Sep 17 00:00:00 2001
+From: Auke Kok <auke-jan.h.kok@intel.com>
+Date: Wed, 13 Mar 2019 11:08:19 -0700
+Subject: [PATCH] Fix make install
+
+---
+ Makefile | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index d6a4d60..282fbd8 100644
+--- a/Makefile
++++ b/Makefile
+@@ -102,3 +102,13 @@ realclean: distclean
+ 	rm -f picocom.1.html
+ 	rm -f picocom.1.pdf
+ 	rm -f CHANGES
++
++install:
++	mkdir -p $(DESTDIR)/usr/bin
++	mkdir -p $(DESTDIR)/usr/share/man/man1
++	mkdir -p $(DESTDIR)/usr/share/doc/picocom
++	#mkdir -p $(DESTDIR)/usr/share/bash-completion/completions
++	install -m0755 pcasc pcxm pcym pczm picocom $(DESTDIR)/usr/bin/
++	install -m0644 picocom.1 $(DESTDIR)/usr/share/man/man1
++	install -m0644 README.md $(DESTDIR)/usr/share/doc/picocom/
++	#install -m0644 bash_completion/picocom $(DESTDIR)/usr/share/bash-completion/completions/
+-- 
+2.20.1
+
