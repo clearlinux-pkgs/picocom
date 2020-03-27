@@ -4,7 +4,7 @@
 #
 Name     : picocom
 Version  : 3.1
-Release  : 1
+Release  : 2
 URL      : https://github.com/npat-efault/picocom/archive/3.1.tar.gz
 Source0  : https://github.com/npat-efault/picocom/archive/3.1.tar.gz
 Summary  : No detailed summary available
