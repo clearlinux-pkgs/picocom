@@ -4,7 +4,7 @@
 #
 Name     : picocom
 Version  : 3.1
-Release  : 2
+Release  : 3
 URL      : https://github.com/npat-efault/picocom/archive/3.1.tar.gz
 Source0  : https://github.com/npat-efault/picocom/archive/3.1.tar.gz
 Summary  : No detailed summary available
@@ -57,24 +57,29 @@ man components for the picocom package.
 
 %prep
 %setup -q -n picocom-3.1
+cd %{_builddir}/picocom-3.1
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552500606
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604605328
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1552500606
+export SOURCE_DATE_EPOCH=1604605328
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/picocom
-cp LICENSE.txt %{buildroot}/usr/share/package-licenses/picocom/LICENSE.txt
-cp linenoise-1.0/LICENSE %{buildroot}/usr/share/package-licenses/picocom/linenoise-1.0_LICENSE
+cp %{_builddir}/picocom-3.1/LICENSE.txt %{buildroot}/usr/share/package-licenses/picocom/c3a0baba9a8daedb6294447a21993439d076dd9e
+cp %{_builddir}/picocom-3.1/linenoise-1.0/LICENSE %{buildroot}/usr/share/package-licenses/picocom/3bd655bcdbe6f4f14e9da385f1953c50dd89ea8e
 %make_install
 
 %files
@@ -94,8 +99,8 @@ cp linenoise-1.0/LICENSE %{buildroot}/usr/share/package-licenses/picocom/linenoi
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/picocom/LICENSE.txt
-/usr/share/package-licenses/picocom/linenoise-1.0_LICENSE
+/usr/share/package-licenses/picocom/3bd655bcdbe6f4f14e9da385f1953c50dd89ea8e
+/usr/share/package-licenses/picocom/c3a0baba9a8daedb6294447a21993439d076dd9e
 
 %files man
 %defattr(0644,root,root,0755)
